@@ -1,0 +1,65 @@
+---
+name: Adithya Praneeth
+surname: Parupudi
+position: "Data Scientist"
+address: "University of Massachusetts Amherst"
+phone: +1 22 3333 4444
+#www: mariecurie.com
+email: "aparupudi@umass.edu"
+github: Adithya1243
+linkedin: adithya-parupudi
+date: "Oct 2022"
+#date: "`r format(Sys.time(), '%B %Y')`"
+output:
+  vitae::awesomecv:
+    page_total: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+```
+
+# Summary
+
+- Member of the Tech Team 
+- Classroom assistant for _Text As Data_(made it italic)
+- I worked in the **IT industry** (made it bold) for 2.7 years at [Tech Mahindra](https://en.wikipedia.org/wiki/Tech_Mahindra) (made into a hyperlink)
+
+# Education
+
+```{r}
+library(tibble)
+tribble(
+  ~ Degree, ~ Year, ~ Institution, ~ Where,
+  "M.S in Data Analytics and Computational Social Science", "2022-2023", "University of Massachusetts Amherst", "Amherst, MA",
+  "B.Tech in Computer Science and Engineering", "2015-2019", "Jawaharlal Nehru Technological University", "Hyderabad, Telangana, India",
+) %>% 
+  detailed_entries(Degree, Year, Institution, Where)
+```
+
+# Work Experience
+
+```{r}
+tribble(
+  ~Year, ~Type, ~Desc,
+  1903, "Physics", "Awarded for her work on radioactivity with Pierre Curie and Henri Becquerel",
+  1911, "Chemistry", "Awarded for the discovery of radium and polonium"
+) %>% 
+  detailed_entries(
+    glue::glue("Nobel Prize in {Type}"),
+    Year, 
+    Desc
+  )
+```
+
+# Publications
+
+```{r}
+library(dplyr)
+knitr::write_bib(c("vitae", "tibble"), "packages.bib")
+
+bibliography_entries("packages.bib") %>%
+  arrange(desc(author$family), issued)
+```
+
